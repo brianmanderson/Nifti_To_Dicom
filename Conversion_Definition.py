@@ -16,6 +16,8 @@ def convert_niftii_to_dicom(image_file_path= 'K:\\Morfeus\\BMAnderson\\CNN\\Data
     :param is_structure: is this to be made into a structure file?
     :return: Creates a folder with the dicom files or RT structure
     '''
+    for path in [image_file_path, out_path]:
+        assert path.find(' ') == -1, "Will not run with spaces in your path!"
     if not is_structure:
         args = 'plastimatch convert --input {} --output-dicom {} --patient-name {} --patient-id {}'.format(image_file_path, out_path, patient_name, patient_id)
     else:
